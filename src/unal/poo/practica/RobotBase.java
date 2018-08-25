@@ -23,109 +23,44 @@ public class RobotBase
            
             System.out.println("Escriba el numero");
             int num= x.nextInt();
-            
-            estudiante.move();
-            estudiante.turnLeft();
-            estudiante.move();
-            estudiante.turnLeft();
-            estudiante.turnLeft();
-            estudiante.turnLeft();
-            estudiante.move();
-            estudiante.move();
-            estudiante.move();
-            estudiante.move();
-            estudiante.turnLeft();
-            estudiante.turnLeft();
-            estudiante.turnLeft();
-            if(digitos(num)==1){
-                poner(traducir(0));
-                estudiante.turnLeft();
-                estudiante.move();            
-                estudiante.move();
-                estudiante.move();
-                estudiante.turnLeft();
-                posicion();
-                poner(traducir(0));
-                estudiante.turnLeft();
-                estudiante.move();            
-                estudiante.move();
-                estudiante.move();
-                estudiante.turnLeft();
-                posicion();
-                poner(traducir(num));
-                estudiante.turnLeft();
-                estudiante.move();            
-                estudiante.move();
-                estudiante.move();
-                estudiante.turnLeft();
-                posicion();
+            posicion(); //va desde su posicion inicial hasta el 0-0 de la matriz
+            int digitos= Integer.toString(num).length();//saber el tamaño del numero
+            String numero= Integer.toString(num);//para acceder a los caracteres en caso del 0
+            if(digitos==1){
+                poner(traducir(num));// se tarduce de numero entero a matriz de booleanos y de matriz a numero en el mundo de karel
+                retornar();//posicion inicial para el otro digito
             }
             
-            if(digitos(num)==2){
+            if(digitos==2){
+                if(numero.charAt(0)=='0'){//si el primer digito es 0
+                    poner(traducir(0));
+                    retornar();
+                    posicion();//toma posicion en segundo digito
+                }
                 int[] A= separar2(num);
-                poner(traducir(0));
-                estudiante.turnLeft();
-                estudiante.move();            
-                estudiante.move();
-                estudiante.move();
-                estudiante.turnLeft();
-                posicion();
                 poner(traducir(A[0]));
-                estudiante.turnLeft();
-                estudiante.move();            
-                estudiante.move();
-                estudiante.move();
-                estudiante.turnLeft();
+                retornar();
                 posicion();
                 poner(traducir(A[1]));
             }
             
-            if(digitos(num)==3){
+            if(digitos==3){
+                 if(numero.charAt(0)=='0'){
+                    poner(traducir(0));
+                    retornar();
+                    posicion();
+                }
                 int[] B=separar3(num);
                 poner(traducir(B[0]));
-                estudiante.turnLeft();
-                estudiante.move();            
-                estudiante.move();
-                estudiante.move();
-                estudiante.turnLeft();
+                retornar();
                 posicion();
                 poner(traducir(B[1]));
-                estudiante.turnLeft();
-                estudiante.move();            
-                estudiante.move();
-                estudiante.move();
-                estudiante.turnLeft();
+                retornar();
                 posicion();
                 poner(traducir(B[2]));
             }
             
        
-}
-   
-public static void posicion(){
-    estudiante.move();
-            estudiante.turnLeft();
-            estudiante.move();
-            estudiante.turnLeft();
-            estudiante.turnLeft();
-            estudiante.turnLeft();
-            estudiante.move();
-            estudiante.move();
-            estudiante.move();
-            estudiante.move();
-            estudiante.turnLeft();
-            estudiante.turnLeft();
-            estudiante.turnLeft();
-}        
-        
-public static int digitos(int x){
-    int cantidad=0;
-    while (x!=0) {        
-        x=x/10;
-        cantidad++;
-    }
-    
-    return cantidad;
 }
         
 public static int[] separar2(int x){
@@ -144,12 +79,6 @@ public static int[] separar3(int x){
         }
        
     return A;
-}
-
-public static void girar3(){
-    estudiante.turnLeft();
-    estudiante.turnLeft();
-    estudiante.turnLeft();
 }
 
 public static boolean[][] traducir(int x){
@@ -215,7 +144,6 @@ public static boolean[][] traducir(int x){
         A[2][0]=true;
         A[2][1]=true;
         A[2][2]=true;
-        A[4][1]=true;
         break;
         
         case 5:
@@ -346,6 +274,36 @@ public static void poner(boolean[][] A){
     
    
 }
+
+public static void girar3(){
+    estudiante.turnLeft();
+    estudiante.turnLeft();
+    estudiante.turnLeft();
+}
+
+public static void retornar(){
+                estudiante.turnLeft();
+                estudiante.move();            
+                estudiante.move();
+                estudiante.move();
+                estudiante.turnLeft();
+}
+
+public static void posicion(){
+            estudiante.move();
+            estudiante.turnLeft();
+            estudiante.move();
+            estudiante.turnLeft();
+            estudiante.turnLeft();
+            estudiante.turnLeft();
+            estudiante.move();
+            estudiante.move();
+            estudiante.move();
+            estudiante.move();
+            estudiante.turnLeft();
+            estudiante.turnLeft();
+            estudiante.turnLeft();
+}        
 
 
 }
