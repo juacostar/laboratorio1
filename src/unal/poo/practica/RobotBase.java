@@ -25,9 +25,14 @@ public class RobotBase
             int num= x.nextInt();
             posicion(); //va desde su posicion inicial hasta el 0-0 de la matriz
             int digitos=Integer.toString(num).length();//saber el tamaño del numero
-            String numero= Integer.toString(num);
-               System.out.println(digitos);//para acceder a los caracteres en caso del 0
+            String numero= Integer.toString(num);//para acceder a los caracteres en caso del 0
             if(digitos==1){
+                poner(traducir(0));
+                retornar();
+                posicion();
+                poner(traducir(0));
+                retornar();
+                posicion();
                 poner(traducir(num));// se tarduce de numero entero a matriz de booleanos y de matriz a numero en el mundo de karel
                 retornar();//posicion inicial para el otro digito
             }
@@ -138,7 +143,6 @@ public static boolean[][] traducir(int x){
         A[3][1]=true;
         A[3][2]=true;
         A[4][0]=true;
-        A[4][1]=true;
         break;
         
         case 1:
@@ -159,7 +163,6 @@ public static boolean[][] traducir(int x){
         A[3][1]=true;
         A[3][2]=true;
         A[4][0]=true;
-        A[4][1]=true;
         break;
         
         case 3:
@@ -173,7 +176,6 @@ public static boolean[][] traducir(int x){
         A[2][2]=true;
         A[3][2]=true;
         A[4][0]=true;
-        A[4][1]=true;
         break;
         
         case 4:
@@ -198,7 +200,6 @@ public static boolean[][] traducir(int x){
         A[2][2]=true;
         A[3][2]=true;
         A[4][0]=true;
-        A[4][1]=true;
         break;
         
         case 6:
@@ -213,7 +214,6 @@ public static boolean[][] traducir(int x){
         A[3][1]=true;
         A[3][2]=true;
         A[4][0]=true;
-        A[4][1]=true;
         break;
         
         case 7:
@@ -238,7 +238,6 @@ public static boolean[][] traducir(int x){
         A[3][1]=true;
         A[3][2]=true;
         A[4][0]=true;
-        A[4][1]=true;
         break;
         
         case 9:
