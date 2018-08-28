@@ -24,24 +24,25 @@ public class RobotBase
             System.out.println("Escriba el numero");
             int num= x.nextInt();
             posicion(); //va desde su posicion inicial hasta el 0-0 de la matriz
-            int digitos= Integer.toString(num).length();//saber el tamaño del numero
-            String numero= Integer.toString(num);//para acceder a los caracteres en caso del 0
+            int digitos=Integer.toString(num).length();//saber el tamaño del numero
+            String numero= Integer.toString(num);
+               System.out.println(digitos);//para acceder a los caracteres en caso del 0
             if(digitos==1){
                 poner(traducir(num));// se tarduce de numero entero a matriz de booleanos y de matriz a numero en el mundo de karel
                 retornar();//posicion inicial para el otro digito
             }
             
             if(digitos==2){
-                if(numero.charAt(0)=='0'){//si el primer digito es 0
-                    poner(traducir(0));
-                    retornar();
-                    posicion();//toma posicion en segundo digito
-                }
-                int[] A= separar2(num);
-                poner(traducir(A[0]));
+               
+                poner(traducir(0));
                 retornar();
                 posicion();
-                poner(traducir(A[1]));
+               
+               int[]A= separar2(num);
+               poner(traducir(A[0]));
+               retornar();
+               posicion();
+               poner(traducir(A[1]));
             }
             
             if(digitos==3){
@@ -63,22 +64,62 @@ public class RobotBase
        
 }
         
-public static int[] separar2(int x){
-    int[] digitos= new int[2];
-    int i=0;
-    digitos[i]=x/10;
-    digitos[i+1]=x%10;
-    return digitos;
-}
 
-public static int[] separar3(int x){
-    int[]A= new int[3];
-        for(int i=0;i<3;i++){
-            A[2-i]=x%10;
-            x=x/10;
+
+public static void poner(boolean[][] A){
+    for(int i=0;i<5;i++){
+        for(int j=0;j<3;j++){
+             estudiante.move();
+            
+             if (i==0 && j==1){
+                 girar3();
+             }
+            
+            if(i==0 && j==2){
+                girar3();
+            }
+            
+            if(i==1 && j==1){
+                estudiante.turnLeft();
+            }
+            
+            if(i==1 && j==2){
+                estudiante.turnLeft();
+            }
+            
+            if(i==2 && j==1){
+                girar3();
+            }
+            
+            if(i==2 && j==2){
+                girar3();
+            }
+            
+            if(i==3 && j==1){
+                estudiante.turnLeft();
+            }
+            
+            if(i==3 && j==2){
+                estudiante.turnLeft();
+            }
+            
+            if(i==4 && j==1){
+                estudiante.turnLeft();
+                estudiante.turnLeft();
+                estudiante.putThing();
+                estudiante.move();
+                estudiante.turnLeft();
+                
+            }
+            
+           if(A[i][j]){
+               estudiante.putThing();
+           }
+           
         }
-       
-    return A;
+    }
+    
+   
 }
 
 public static boolean[][] traducir(int x){
@@ -217,62 +258,22 @@ public static boolean[][] traducir(int x){
     return A;
 }
 
+public static int[] separar2(int x){
+    int[] digitos= new int[2];
+    int i=0;
+    digitos[i]=x/10;
+    digitos[i+1]=x%10;
+    return digitos;
+}
 
-
-public static void poner(boolean[][] A){
-    for(int i=0;i<5;i++){
-        for(int j=0;j<3;j++){
-             estudiante.move();
-            
-             if (i==0 && j==1){
-                 girar3();
-             }
-            
-            if(i==0 && j==2){
-                girar3();
-            }
-            
-            if(i==1 && j==1){
-                estudiante.turnLeft();
-            }
-            
-            if(i==1 && j==2){
-                estudiante.turnLeft();
-            }
-            
-            if(i==2 && j==1){
-                girar3();
-            }
-            
-            if(i==2 && j==2){
-                girar3();
-            }
-            
-            if(i==3 && j==1){
-                estudiante.turnLeft();
-            }
-            
-            if(i==3 && j==2){
-                estudiante.turnLeft();
-            }
-            
-            if(i==4 && j==1){
-                estudiante.turnLeft();
-                estudiante.turnLeft();
-                estudiante.putThing();
-                estudiante.move();
-                estudiante.turnLeft();
-                
-            }
-            
-           if(A[i][j]){
-               estudiante.putThing();
-           }
-           
+public static int[] separar3(int x){
+    int[]A= new int[3];
+        for(int i=0;i<3;i++){
+            A[2-i]=x%10;
+            x=x/10;
         }
-    }
-    
-   
+       
+    return A;
 }
 
 public static void girar3(){
@@ -307,5 +308,3 @@ public static void posicion(){
 
 
 }
-
-
