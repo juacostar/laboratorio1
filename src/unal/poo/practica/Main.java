@@ -4,12 +4,13 @@ import java.util.Scanner;
 /** 
  * Practica de los conceptos de Programacion Estructurada
  * @author Fabian Andres Giraldo */
-public class RobotBase
+public class Main
 {    
        //Declaracion de Variables -- Forma temporal - No es buena practica tener
        //variables estaticas
         public static City objetos;
         public static Robot estudiante;
+        public static Thing cosa;
         
 	public static void main (String[] args){
             //Declarar la creacion de la ciudad
@@ -20,7 +21,8 @@ public class RobotBase
             //Definicion de la ubicacion del robot, Ciudad, posicion, Direccion, Numero things en el bolso.
             estudiante = new Robot(objetos,6, 2, Direction.NORTH,200);
             Scanner x= new Scanner(System.in);
-           
+            cosa = new Thing(objetos, 0, 0);
+            
             System.out.println("Escriba el numero");
             int num= x.nextInt();
             posicion(); //va desde su posicion inicial hasta el 0-0 de la matriz
